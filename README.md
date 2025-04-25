@@ -84,7 +84,7 @@ Here are the personal steps I follow for perfecting the Windows installation.
 
 ### [4.2] Privacy and DNS
 - I always use **[NextDNS](https://nextdns.io/?from=768ha46y)** to block ads and malware in all apps.
-- A free alternative is **[Cloudflare DNS](https://developers.cloudflare.com/1.1.1.1/setup/windows/)**.
+- Free alternatives: **[Cloudflare DNS](https://developers.cloudflare.com/1.1.1.1/setup/windows/)** or **[AdGuard DNS](https://adguard-dns.io/en/public-dns.html)**.
 - Changing DNS is easy, just search for guides online.
 
 ### [4.3] Activate Your Windows License
@@ -131,3 +131,4 @@ Here are a few apps and tools that I use, though they’re not recommended for e
 - **[Vencord](https://vencord.dev/)** – Modifies Discord with plugins/themes (Technically against ToS).
 - **[Brave Browser](https://brave.com/download/)** – A great browser if you can’t move away from Chrome.
 - **[Firefox Browser](https://www.mozilla.org/en-US/firefox/new/)** – What I use and recommend.
+- **[PowerToys](https://github.com/microsoft/PowerToys)** - Set of utilities for power users.
