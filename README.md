@@ -121,6 +121,7 @@ Here are a few apps and tools that I use, though they’re not recommended for e
 
 ### [6.1] Programs (Portable, No Installation)
 - **[O&O ShutUp10++](https://www.oo-software.com/en/shutup10)** – Privacy tool to disable spying/telemetry.
+- **[RemoveWindowsAI](https://github.com/zoicware/RemoveWindowsAI)** – Remove the entire Copilot and other Microsoft AI features.
 - **[Sysinternals Autoruns](https://learn.microsoft.com/en-us/sysinternals/downloads/autoruns)** – Clean up what's loading on Windows startup.
 - **[nvidiaProfileInspector](https://github.com/Orbmu2k/nvidiaProfileInspector/releases)** – Customize your Nvidia GPU settings.  
   *(Here's what I do: [Example](https://i.imgur.com/lzfZd3Y.png))*
