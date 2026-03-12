@@ -81,6 +81,7 @@ Here are the personal steps I follow for perfecting the Windows installation.
 - Example of my custom settings:  
   - **(1) - Components:** [Component Settings](https://i.imgur.com/wpFw1I5.png)
   - **(2) - Tweaks:** [Tweaks Settings](https://i.imgur.com/Pj97Qr5.png)
+  - **(3) - Control Panel:** [Nvidia Control Panel](https://i.imgur.com/S0jyeQH.png)
 
 ### [4.2] Privacy and DNS
 - I always use **[NextDNS](https://nextdns.io/?from=768ha46y)** to block ads and malware in all apps.
