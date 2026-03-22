@@ -120,7 +120,7 @@ Requirements:
 1. Search for **"Powershell"** and right-click run it as admin
 2. Type the following and hit enter:  
    `irm "https://christitus.com/win" | iex`
-3. Head to the **"Tweaks"** tab and (optionally) copy my [settings](https://i.imgur.com/bnmsW55.png)
+3. Head to the **"Tweaks"** tab and (optionally) copy my **[settings](https://i.imgur.com/bnmsW55.png)**
 4. Click **"Run Tweaks"** and wait for it to finish (check console output)
 5. I also recommend adding the **Ultimate Performance Profile** in the "Tweaks" tab and enabling **Security Settings** in the "Updates" tab
 
