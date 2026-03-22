@@ -1,136 +1,143 @@
-# Clean and Debloated Windows 11 Install Guide by Luckyone
+# Optimized and debloated Windows 11 fresh install
 
-## [1] Prepare Your Autounattend XML File
+- No more default app bloat
+- Less processes running in the background of your system
+- More CPU for your games and other heavy tasks
+  
+![Initial install state](https://i.imgur.com/0Qu6nOM.png)
 
-The following service lets you create an autounattend file for your bootable USB installation drive:  
-**[Windows Autounattend File Generator](https://schneegans.de/windows/unattend-generator/)**  
-*(Note: The domain is German, but the entire website is in English.)*  
-We'll manually add the final file to our bootable USB installation drive later in the guide.
+## [Step 1] Creating and editing the autounattend xml file
 
-This file automates most of your Windows installation process, removing unwanted Microsoft apps and services before you even get to the desktop for the first time.
+**Why autounattend?**
+- Create a local account
+- Prevent device encryption (Windows 11 otherwise forces Bitlocker by default)
+- Remove 55+ preinstalled default apps (You can still keep apps you use)
+- Uninstall Edge (Supported by Microsoft since recent updates)
 
-### [1.1] Notable Autounattend Options
-- **Create a local account**
-- **Prevent device encryption** (Windows 11 otherwise forces Bitlocker by default)
-- **Remove 55+ preinstalled default apps** (You can still keep apps you use)
-- **Uninstall Edge** (Supported by Microsoft since recent updates)
+#### [Step 1.1] How to get the custom pre-configured base file
+1. Click the `autounattend.xml` file in this GitHub repo
+2. Click the 3 dots in the top right corner of the file page
+3. Click **Download** or press `CTRL+Shift+S` to save it on your PC
 
-### [1.2] My Personally Customized File
-For those looking for my personal file, it's available in this repository for download.  
-However, you’ll still need to upload and import the file on the website linked above and make any necessary edits.
+#### [Step 1.2] Upload and edit the base file
+1. Head over to the **[Windows Autounattend File Generator](https://schneegans.de/windows/unattend-generator/)** website
+2. Select **Choose File** to upload the saved file
+3. Click **Import File** next to it
+4. Make changes as mentioned in the next step
 
-#### [1.2.1] How to Use and Edit My Personally Customized File
-1. Click the `autounattend.xml` file in this GitHub repo.
-2. Click the 3 dots in the top right corner of the file page.
-3. Click **Download** or press `CTRL+Shift+S` to save it on your PC.
-4. Go to the website linked in step 1.
-5. Select **Choose File** to upload the saved file.
-6. Click **Import File** next to it.
-7. Make changes as mentioned in the next step.
+#### [Step 1.3] Double check the following options and edit as needed
 
-#### [1.2.2] Options to Double-Check When Using My Personal File
-- **Windows display language:** I use English (United States).
-- **Keyboard layout:** I use German.
-- **Processor architectures:** I use Intel/AMD 64-bit.
-- **Time zone:** I use UTC+1 (Berlin).
-- **User account name:** Change it from "Lucky" to your preferred name.
-- **Default apps:** I leave only Notepad, Terminal, Paint, Photos, and Calculator installed.
+- Use `CTRL+F` on the site to search for and edit the following keywords
 
----
+1. **Windows display language:** Base file default `English`
+2. **Keyboard language:** Base file default `German (Germany)`
+3. **Keyboard layout:** Base file default `German`
+4. **Home location and device setup region:** Base file default `Germany`
+5. **Processor architectures:** Base file default `Intel / AMD 64-bit`
+6. **Time zone:** Base file default `UTC+1 (Amsterdam, Berlin, Bern, Rome, ...)`
+7. **User accounts:** Change account name `Lucky` to your own
+8. **Remove bloatware:** Checkbox ticked means the Microsoft app won't be installed
 
-## [2] Prepare Your Bootable USB Drive
+#### [Step 1.4] Download and save the final autounattend xml file
+1. Scroll to the very bottom of the website
+2. Click the button `Download .xml file`
+3. Save and don't change the file name
 
-You'll need:
-- A **USB drive with at least 8GB** of space, formatted to **FAT32**.
-- The **[Media Creation Tool](https://www.microsoft.com/en-us/software-download/windows11)** (download the second button on the page under "Create Windows 11 Installation Media").
+## [Step 2] Creating a bootable USB drive
 
-### [2.1] Why Not Ventoy or Rufus?
-- **TL;DR:** Using either of these tools might lead to bluescreens during installation for unknown reasons.
-- This could be related to turning off device encryption or disabling the new Recall feature, but this is just a guess.
+Requirements:
+- A **USB drive with at least 8GB** of space - formatted in **FAT32**
+- The **[Windows 11 Media Creation Tool](https://www.microsoft.com/en-us/software-download/windows11)**
+- Use the second download button `Create Windows 11 Installation Media`
+- Do not attempt this with Ventoy or Rufus - it can end up in bluescreens during the installation
 
-### [2.2] Finishing Our Bootable USB Drive
-1. Run the Media Creation Tool and select your already formatted USB drive.
-2. Wait for the tool to finish and close it.
-3. Copy your `autounattend.xml` file into the root of the USB drive.
-   - It should now appear alongside files like `bootmgr`, `bootmgr.efi`, and `setup.exe`.
+#### [Step 2.1] Finalizing the bootable USB drive
+1. Run the `MediaCreationTool.exe` and go through all steps - select the formatted USB drive
+2. Wait for the tool to finish and close it
+3. Copy your `autounattend.xml` file into the root of the USB drive
+   - It should now appear alongside files like `bootmgr`, `bootmgr.efi`, and `setup.exe`
+   - **[like in this screenshot](https://i.imgur.com/4SRkhPj.png)**
 
----
+## [Step 3] Installing Windows with the prepared USB
 
-## [3] Actually Installing Your Modified Windows
+- Ensure your prepared bootable USB drive is connected to the PC
+- Remove your Ethernet cable for the installation process to avoid telemetry and geolocation
 
-1. Ensure your finished bootable USB drive is connected to your PC.
-2. Shut down the PC and turn it back on.
-3. Hold down the **DEL** key (or the respective key for your motherboard) to enter BIOS/UEFI.
-4. Set your USB drive to **priority 1** in the boot order, save changes, and exit.
-5. Your PC should now boot into the Windows installation process, and the `autounattend.xml` file will start doing its magic.
-   - The only thing you'll need to do is format the drive where Windows will be installed.
+#### [Step 3.1] Method 1: Command prompt or Powershell
+1. Open either command prompt or Powershell as an admin
+2. Paste `shutdown /r /fw /t 0` and hit enter
 
----
+#### [Step 3.2] Method 2: Manually
+1. Shut down the PC and turn it back on
+2. Hold the **DEL** key (or the respective key for your motherboard) to enter BIOS/UEFI
+3. Set your USB drive to **priority 1** in the boot order - save - exit
 
-## [4] Initial Steps After Entering Desktop for the First Time
+#### [Step 3.3] Installation
+1. Most steps will be auto skipped with our autounattend file
+2. For the disk partition step - make sure to delete all drives and partitions
 
-Here are the personal steps I follow for perfecting the Windows installation.
+## [Step 4] Initial setup steps after the installation
 
-### [4.1] Drivers
-1. Prepare a second USB drive with all necessary drivers.
-2. Download them from your motherboard vendor's website.
-3. Unzip and install all of them, then reboot your PC.
+- Here are the recommended steps to follow for the perfect Windows installation
 
-#### [4.1.1] NVidia Custom Driver Without Bloat
-- I recommend using **[NVCleanStall](https://www.techpowerup.com/download/techpowerup-nvcleanstall/)** for a debloated NVidia driver.
-- Example of my custom settings:  
-  - **(1) - Components:** [Component Settings](https://i.imgur.com/wpFw1I5.png)
-  - **(2) - Tweaks:** [Tweaks Settings](https://i.imgur.com/Pj97Qr5.png)
-  - **(3) - Control Panel:** [Nvidia Control Panel](https://i.imgur.com/S0jyeQH.png)
+#### [Step 4.1] Core drivers
+1. Prepare a folder with all necessary drivers
+2. Download them only from your motherboard vendor's website
+3. Unzip and install all of them - then reboot your PC
+4. Audio - LAN - Chipset is recommended - rest is bloat
 
-### [4.2] Privacy and DNS
-- I always use **[NextDNS](https://nextdns.io/?from=768ha46y)** to block ads and malware in all apps.
-- Free alternatives: **[Cloudflare DNS](https://developers.cloudflare.com/1.1.1.1/setup/windows/)** or **[AdGuard DNS](https://adguard-dns.io/en/public-dns.html)**.
-- Changing DNS is easy, just search for guides online.
+#### [Step 4.2] Custom NVIDIA driver without bloat
+- It is highly recommended to use **[NVCleanStall](https://www.techpowerup.com/download/techpowerup-nvcleanstall/)**
 
-### [4.3] Activate Your Windows License
-- Search for **"Activation Settings"**, then enter your product key (preferably **Pro**).
+1. NVCleanStall components: **[Component Settings](https://i.imgur.com/wpFw1I5.png)**
+2. NVCleanStall tweaks: **[Tweaks Settings](https://i.imgur.com/Pj97Qr5.png)**
+3. NVIDIA control panel: **[Nvidia Control Panel](https://i.imgur.com/nSfYcvj.png)**
 
-### [4.4] Noteworthy Things to Check Immediately
-- Enable **"Hardware accelerated GPU scheduling"** (Search for "Graphics settings").
-- **Highly recommend** turning off **"Memory integrity"** (Search for "Device security" > "Core isolation").
+#### [Step 4.3] Privacy and DNS
+- I recommend **[NextDNS](https://nextdns.io/?from=768ha46y)** to block ads and malware across all devices ($1,99/month)
+- Free alternatives: **[Cloudflare DNS](https://developers.cloudflare.com/1.1.1.1/setup/windows/)** or **[AdGuard DNS](https://adguard-dns.io/en/public-dns.html)**
+- In case you need a guide how to change your DNS check out **[this wiki guide](https://www.wikihow.com/Change-DNS-Windows-11)**
 
----
+#### [Step 4.4] Activating the Windows license
+- Search for "Activation Settings" and enter your product key (use **Pro** or **Pro N**)
+- You can grab a cheap volume license OEM/Retail on eBay or g2g for less than $2
 
-## [5] Using the Ultimate Tool for Tweaking
+#### [Step 4.5] Noteworthy Windows options
+- Enable "Hardware accelerated GPU scheduling" (Search for "Graphics settings")
+- Turn off "Memory integrity" (Search for "Device security" > "Core isolation")
+  - Memory integrity is roughly a 5% fps loss if enabled **[read more](https://www.reddit.com/r/Windows11/comments/16827sg/should_i_turn_on_the_memory_integrity/)**
 
-My go-to tool is the **[Windows Utility](https://github.com/ChrisTitusTech/winutil)**, a popular GitHub Powershell project.
+## [Step 5] Using the chris titus windows utility
 
-### [5.1] Before We Can Use It
-1. Run all **Windows updates** (Search for "Check for updates") **- MANDATORY**.
-2. Reboot after completing all updates **- MANDATORY**.
-3. Open the **Microsoft Store** **once** to trigger/fix WinGet package manager (Can be closed immediately).
+- See **[Windows Utility](https://github.com/ChrisTitusTech/winutil)** - a popular GitHub Powershell project
 
-### [5.2] Actually Using the Windows Utility Script
-1. Search for **"Powershell"** and run it as admin.
+#### [Step 5.1] Before you use it
+1. Run all **Windows updates** (Search for "Check for updates") **- MANDATORY**
+2. Reboot after completing all updates **- MANDATORY**
+3. Open the **Microsoft Store** **once** to trigger/fix WinGet package manager (Can be closed immediately)
+
+#### [Step 5.2] Using the windows utility
+1. Search for **"Powershell"** and right-click run it as admin
 2. Type the following and hit enter:  
    `irm "https://christitus.com/win" | iex`
-3. Head to the **"Tweaks"** tab and (optionally) copy my [Settings](https://i.imgur.com/bnmsW55.png).
-4. Click **"Run Tweaks"** and wait for it to finish (check console output).
-5. I also recommend adding the **Ultimate Performance Profile** in the "Tweaks" tab and enabling **Security Settings** in the "Updates" tab.
+3. Head to the **"Tweaks"** tab and (optionally) copy my [settings](https://i.imgur.com/bnmsW55.png)
+4. Click **"Run Tweaks"** and wait for it to finish (check console output)
+5. I also recommend adding the **Ultimate Performance Profile** in the "Tweaks" tab and enabling **Security Settings** in the "Updates" tab
 
----
+## [Step 6] Extra tools & Recommendations
 
-## [6] Extras I Personally Use
+- Here are a few apps and tools that I use, though they’re not recommended for everyone
+- Make sure you understand their purpose and can make use of them
 
-Here are a few apps and tools that I use, though they’re not recommended for everyone. Make sure you understand their purpose and can make use of them.
-
-### [6.1] Programs (Portable, No Installation)
-- **[O&O ShutUp10++](https://www.oo-software.com/en/shutup10)** – Privacy tool to disable spying/telemetry.
-- **[RemoveWindowsAI](https://github.com/zoicware/RemoveWindowsAI)** – Remove the entire Copilot and other Microsoft AI features.
-- **[Sysinternals Autoruns](https://learn.microsoft.com/en-us/sysinternals/downloads/autoruns)** – Clean up what's loading on Windows startup.
-- **[nvidiaProfileInspector](https://github.com/Orbmu2k/nvidiaProfileInspector/releases)** – Customize your Nvidia GPU settings.  
+#### [Step 6.1] Executables (Portable - No Installation)
+1. **[O&O ShutUp10++](https://www.oo-software.com/en/shutup10)** – Privacy tool to disable spying/telemetry
+2. **[RemoveWindowsAI](https://github.com/zoicware/RemoveWindowsAI)** – Remove the entire Copilot and other Microsoft AI features
+3. **[Sysinternals Autoruns](https://learn.microsoft.com/en-us/sysinternals/downloads/autoruns)** – Clean up what's loading on Windows startup
+4. **[nvidiaProfileInspector](https://github.com/Orbmu2k/nvidiaProfileInspector/releases)** – Customize your Nvidia GPU settings
   *(Here's what I do: [Example](https://i.imgur.com/lzfZd3Y.png))*
 
-### [6.2] Apps to Modify Certain Things (Installed on Your System)
-- **[Nilesoft Shell](https://nilesoft.org/)** – Personalize and skin the right-click context menu.
-- **[ExplorerPatcher](https://github.com/valinet/ExplorerPatcher/releases)** – Advanced customization (Not recommended unless you know what you’re doing).
-- **[Vencord](https://vencord.dev/)** – Modifies Discord with plugins/themes (Technically against ToS).
-- **[Brave Browser](https://brave.com/download/)** – A great browser if you can’t move away from Chrome.
-- **[Firefox Browser](https://www.mozilla.org/en-US/firefox/new/)** – What I use and recommend.
-- **[PowerToys](https://github.com/microsoft/PowerToys)** - Set of utilities for power users.
+#### [Step 6.2] More apps (App installers)
+1. **[Nilesoft Shell](https://nilesoft.org/)** – Personalize and skin the right-click context menu
+2. **[Vencord](https://vencord.dev/)** – Modifies Discord with plugins/themes (Technically against ToS)
+3. **[Brave Browser](https://brave.com/download/)** – The best browser and adblocking engine (Based on Chrome)
+4. **[PowerToys](https://github.com/microsoft/PowerToys)** - Set of utilities for power users
