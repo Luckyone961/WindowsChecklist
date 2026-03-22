@@ -58,6 +58,12 @@ Requirements:
    - It should now appear alongside files like `bootmgr`, `bootmgr.efi`, and `setup.exe`
    - **[like in this screenshot](https://i.imgur.com/4SRkhPj.png)**
 
+#### [Step 2.2] Prepare core drivers
+1. Prepare all necessary drivers (Second USB drive or external backup)
+2. Download them only from your motherboard vendor's website
+3. Unzip and install all of them - then reboot your PC
+4. Audio - LAN - Chipset is recommended - rest is bloat
+
 ## [Step 3] Installing Windows with the prepared USB
 
 - Ensure your prepared bootable USB drive is connected to the PC
@@ -79,12 +85,6 @@ Requirements:
 ## [Step 4] Initial setup steps after the installation
 
 - Here are the recommended steps to follow for the perfect Windows installation
-
-#### [Step 4.1] Core drivers
-1. Prepare a folder with all necessary drivers
-2. Download them only from your motherboard vendor's website
-3. Unzip and install all of them - then reboot your PC
-4. Audio - LAN - Chipset is recommended - rest is bloat
 
 #### [Step 4.2] Custom NVIDIA driver without bloat
 - It is highly recommended to use **[NVCleanStall](https://www.techpowerup.com/download/techpowerup-nvcleanstall/)**
